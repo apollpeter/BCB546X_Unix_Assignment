@@ -1,6 +1,6 @@
-#Amy Pollpeter - UNIX Exercise Markdown File
+# Amy Pollpeter - UNIX Exercise Markdown File
 
-##Checking for updates
+## Checking for updates
 Make sure my files are up-to-date.
 
 ```
@@ -9,7 +9,7 @@ $ git pull origin master
 
 Files are up-to-date.
 
-##Data Inspection  
+## Data Inspection  
 
 ### Attributes of ```fang_et_al_genotypes.txt``` file.
 
@@ -21,7 +21,7 @@ Files are up-to-date.
 	$ awk -F "\t" '{print NF; exit}' fang_et_al_genotypes.txt
 	$ file fang_et_al_genotypes.txt
 
-####By Inspecting this file, I've learned:
+#### By Inspecting this file, I've learned:
 
 
 - - The file 6.1 Mb in size.
@@ -40,7 +40,7 @@ Files are up-to-date.
 	$ file snp_position.txt
 
 
-####By Inspecting this file, I've learned:
+#### By Inspecting this file, I've learned:
 - 
 
 - The file is 38 kb in size.
@@ -49,9 +49,9 @@ Files are up-to-date.
 - Confirmed that the number of words in the first line equaled the number of columns.
 - The file is ASCII text
 
-##Processing Data Files
+## Processing Data Files
 
-###Separating the maize and teosinte data into separate files
+### Separating the maize and teosinte data into separate files
 	$ grep -i zmm* fang_et_al_genotypes.txt > fang_maize.txt
 	$ grep -i zmp* fang_et_al_genotypes.txt > fang_teosinte.txt
 	$ wc fang_maize.txt fang_teosinte.txt
@@ -76,7 +76,7 @@ Files are up-to-date.
 - I used a ```wc``` command to determine there were 986 lines in each of these files.  The original file had 986 columns of data.
 - I then used the ```awk column``` command to determine that the number of columns in the transposed files is 2729.  Recall that this is the same as the number of lines in the untranposed files. 
 
-###Preparing the file to be joined: ```snp_position.txt```
+### Preparing the file to be joined: ```snp_position.txt```
 	$ cut -f 1,3,4 snp_position.txt > snp_position_alt.txt
 	$ head snp_position_alt.txt
 	$ tail -n +2 snp_position_alt.txt > snp_position_edit.txt
@@ -93,7 +93,7 @@ Files are up-to-date.
 - sorted the resulting files by the first column in each file (this is the common column between them).
 - Used the ```head``` command on each file to confirm that the headers were removed and they were sorted correctly.
 
-###Joining the maize data into one file.
+### Joining the maize data into one file.
 	$ sort -k1,1 transposed_fang_maize.txt > sorted_maize.txt
 	$ join -1 1 -2 1 -a 2 -t $'\t' Snp_position_sorted.txt sorted_maize.txt > combined_maize.txt
 	$ awk -F "\t" '{print NF; exit}' combined_maize.txt
@@ -105,7 +105,7 @@ Number of columns =2731
 Number of lines = 986
 
 
-###Joining the teosinte data into one file
+### Joining the teosinte data into one file
 	$ sort -k1,1 transposed_fant_teosinte.txt > sorted_teosinte.txt
 	$ join -1 1 -2 1 -a 2 -t $'\t' Snp_position_sorted.txt sorted_teosinte.txt > combined_teosinte.txt
 	$ awk -F "\t" '{print NF; exit}' combined_teosinte.txt
@@ -116,7 +116,7 @@ Number of lines = 986
 Number of columns = 2731
 Number of lines = 986
 
-###Sorting files by chromosome - maize data
+### Sorting files by chromosome - maize data
 	$ cut -f 2 combined_maize.txt | sort| uniq -c
 	$ awk '$2==1 {print $0}' combined_maize.txt > maize/maize_chr1.txt
 	$ awk '$2 ~ /unknown/ {print $0}' combined_maize.txt > maize/maize_chr_unk.txt
@@ -125,11 +125,6 @@ Number of lines = 986
 	$ sort -k3,3n maize_chr1.txt > sorted_increasing/maize_chr1_sort.txt
 	$ sort -k3,3nr maize_chr1.txt > sorted_decreasing/maize_chr1_sort_dec.txt
 	
-
-
-
-
-
 - I used a combination of ```cut```, ```sort```, and ```uniq``` to determined the values included in the chromosome column.  Here are the results of this command:
 	- 155 1
 	- 53 10
@@ -165,7 +160,7 @@ I then checked the first file to see if the sort was working how I expected it w
 I sorted each file based on column 3 (position) in an decreasing fashion.
 I checked the first file to see if the sort was working how I expected it was.
 
-###Sorting file by chromosome - teosinte data
+### Sorting file by chromosome - teosinte data
 	$ cut -f 2 combined_teosinte.txt | sort | uniq -c
 	$ awk '$2==1 {print $0}' combined_teosinte.txt > teosinte/teosinte_chr_1.txt
 	$ awk '$2 ~/multiple/ {print $0}' combined_teosinte.txt > teosinte/teosinte_chr_mult.txt
@@ -212,14 +207,14 @@ I checked the first file to see if the sort was working how I expected it was.
 - I sorted each file based on column 3 (position) in an decreasing fashion.
 - I checked the first file to see if the sort was working how I expected - it was.
 
-###Replacing missing data indicators
+### Replacing missing data indicators
 	$ sed 's/?/-/g' maize_chr1_sort_dec.txt > Edited/maize_chr1_sort_dec_edit.txt
 	$ sed 's/?/-/g' teosinte_chr1_sort_dec.txt > Edited/teosinte_chr1_sort_dec_edit.txt
 
 
 - The files sorted in increasing order already had the missing data indicated by a ? as specified.  I used the ```sed``` command to replace the '?' with a '-' in the files sorted in decreasing order.
 
-###Adding Headers back onto files
+### Adding Headers back onto files
 	$ head -n 1 snp_position_alt.txt > Final/header
 	$ cp header > Final/Maize_data/maize_chr_mult_final.txt
 	$ cat teosinte_chr1_sort.txt >> /home/amyrp/BCB546X-Fall2019/assignments/UNIX_Assignment/current_files/teosinte/Final/Sorted_increasing/teosinte_chr1_incr.txt
