@@ -140,20 +140,20 @@ Number of lines = 986
 	- 27 unknown
 - I used ```awk``` to search each file for the specified chromosome # in column 2 and print the entire record, then write that to a new file.  I repeated this command for each of the 10 chromosomes.
 - I modified the ```awk``` command slightly for the multiple and unknown options.
-- I ran a ```wc``` command using the wildcard * to get a wc (really line count) in each of the files to compare to the number of records that should be in each file. The results were:
+- I ran a ```wc``` command using the wildcard (*) to get a wc (really line count) in each of the files to compare to the number of records that should be in each file. The results were:
  	 - 53   144743   579582 maize_chr10.txt
-	-      155   423305  1694845 maize_chr1.txt
-	-      127   346837  1388655 maize_chr2.txt
-	-      107   292217  1169979 maize_chr3.txt
-	-       91   248521   995021 maize_chr4.txt
-	-      122   333182  1334006 maize_chr5.txt
-	-       76   207556   831045 maize_chr6.txt
-	-       97   264907  1060683 maize_chr7.txt
-	-       62   169322   677945 maize_chr8.txt
-	-       60   163860   656064 maize_chr9.txt
-	-        6    16380    65600 maize_chr_mult.txt
-	-       27    73737   295353 maize_chr_unk.txt
-	-      983  2684567 10748778 total
+	- 155   423305  1694845 maize_chr1.txt
+	- 127   346837  1388655 maize_chr2.txt
+	- 107   292217  1169979 maize_chr3.txt
+	- 91   248521   995021 maize_chr4.txt
+	- 122   333182  1334006 maize_chr5.txt
+	- 76   207556   831045 maize_chr6.txt
+	- 97   264907  1060683 maize_chr7.txt
+	- 62   169322   677945 maize_chr8.txt
+	- 60   163860   656064 maize_chr9.txt
+	- 6    16380    65600 maize_chr_mult.txt
+	- 27    73737   295353 maize_chr_unk.txt
+	- 983  2684567 10748778 total
 -This command confirmed the number of records for the specific chromosomes.
 I sorted each file based on column 3 (position) in an increasing fashion.
 I then checked the first file to see if the sort was working how I expected it was.
