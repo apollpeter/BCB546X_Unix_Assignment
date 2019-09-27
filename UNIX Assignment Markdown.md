@@ -23,8 +23,7 @@ Files are up-to-date.
 
 #### By Inspecting this file, I've learned:
 
-
-- - The file 6.1 Mb in size.
+- The file 6.1 Mb in size.
 - There are 2783 lines in the file.
 - The first line has 986 "words" and 10847.  I suspect the number of words corresponds to the number of columns.
 - "Awk" confirmed that the number of columns is 986.
@@ -41,7 +40,6 @@ Files are up-to-date.
 
 
 #### By Inspecting this file, I've learned:
-- 
 
 - The file is 38 kb in size.
 - The file has 984 lines of data.
